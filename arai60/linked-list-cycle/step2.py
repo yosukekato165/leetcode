@@ -30,3 +30,32 @@ class RecursionSolution(object):
             visited.add(node)
             node = node.next
         return False
+
+#### レビュー反映
+
+class RevisedTwoPointerSolution(object):
+    def hasCycle(self, head):
+        if head is None or head.next is None:
+            return False
+
+        slow = head
+        fast = head.next
+
+        while slow is not fast:
+            if fast is None or fast.next is None:
+                return False
+            slow = slow.next
+            fast = fast.next.next
+
+        return True
+
+class HashSetSolution(object):
+    def hasCycle(self, head):
+        visited = set()
+        node = head
+        while node:
+            if node in visited:
+                return True
+            visited.add(node)
+            node = node.next
+        return False
